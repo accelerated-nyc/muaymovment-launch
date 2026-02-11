@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { ScrollReveal } from "@/components/ScrollReveal";
 
 const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -16,10 +17,16 @@ const SchedulingSection = () => {
   const [selectedDate, setSelectedDate] = useState<number | null>(10);
   const [selectedTime, setSelectedTime] = useState<string | null>("10:00 AM — 10:45 AM");
   const [isZoom, setIsZoom] = useState(true);
+  const [ripple, setRipple] = useState(false);
 
   const calendarDays: (number | null)[] = [null, null, null, 1, 2, 3, 4];
   for (let i = 5; i <= 31; i++) calendarDays.push(i);
   while (calendarDays.length < 42) calendarDays.push(null);
+
+  const handleConfirm = () => {
+    setRipple(true);
+    setTimeout(() => setRipple(false), 600);
+  };
 
   return (
     <section id="book" className="relative bg-void film-grain py-28 md:py-40">
@@ -44,10 +51,12 @@ const SchedulingSection = () => {
                     <div key={d} className="text-silver/30 text-[11px] py-2 font-medium">{d}</div>
                   ))}
                   {calendarDays.map((day, i) => (
-                    <button
+                    <motion.button
                       key={i}
                       disabled={!day || !availableDates.includes(day)}
                       onClick={() => day && setSelectedDate(day)}
+                      whileTap={day && availableDates.includes(day) ? { scale: 1.1 } : undefined}
+                      transition={{ type: "spring", stiffness: 400, damping: 15 }}
                       className={`aspect-square flex items-center justify-center text-sm transition-all duration-300 ${
                         !day
                           ? ""
@@ -59,7 +68,7 @@ const SchedulingSection = () => {
                       }`}
                     >
                       {day}
-                    </button>
+                    </motion.button>
                   ))}
                 </div>
               </div>
@@ -69,9 +78,11 @@ const SchedulingSection = () => {
                 <p className="text-silver/50 text-[12px] tracking-[0.2em] uppercase mb-5 font-body">Available Times</p>
                 <div className="grid grid-cols-1 gap-2 mb-10">
                   {timeSlots.map((slot) => (
-                    <button
+                    <motion.button
                       key={slot}
                       onClick={() => setSelectedTime(slot)}
+                      whileTap={{ scale: 1.03 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 15 }}
                       className={`text-left px-5 py-3.5 text-sm transition-all duration-300 border ${
                         selectedTime === slot
                           ? "border-gold/50 text-gold bg-gold/[0.06] glow-gold-sm"
@@ -79,31 +90,54 @@ const SchedulingSection = () => {
                       }`}
                     >
                       {slot}
-                    </button>
+                    </motion.button>
                   ))}
                 </div>
 
-                {/* Toggle */}
-                <div className="flex items-center gap-2 mb-10">
+                {/* Toggle with sliding indicator */}
+                <div className="relative flex items-center gap-0 mb-10 bg-white/[0.02] border border-white/[0.08] overflow-hidden">
+                  {/* Sliding gold background */}
+                  <motion.div
+                    className="absolute top-0 bottom-0 bg-gold"
+                    initial={false}
+                    animate={{ left: isZoom ? 0 : "50%", width: "50%" }}
+                    transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                  />
                   <button
                     onClick={() => setIsZoom(true)}
-                    className={`px-5 py-2.5 text-sm font-heading font-medium transition-all duration-300 ${
-                      isZoom ? "bg-gold text-black" : "bg-transparent border border-white/[0.08] text-silver/50 hover:border-gold/20"
+                    className={`relative z-10 flex-1 px-5 py-2.5 text-sm font-heading font-medium transition-colors duration-300 ${
+                      isZoom ? "text-black" : "text-silver/50 hover:text-silver"
                     }`}
                   >
                     Zoom
                   </button>
                   <button
                     onClick={() => setIsZoom(false)}
-                    className={`px-5 py-2.5 text-sm font-heading font-medium transition-all duration-300 ${
-                      !isZoom ? "bg-gold text-black" : "bg-transparent border border-white/[0.08] text-silver/50 hover:border-gold/20"
+                    className={`relative z-10 flex-1 px-5 py-2.5 text-sm font-heading font-medium transition-colors duration-300 ${
+                      !isZoom ? "text-black" : "text-silver/50 hover:text-silver"
                     }`}
                   >
                     In-Person
                   </button>
                 </div>
 
-                <button className="w-full py-4 bg-gold text-black font-heading font-semibold text-sm uppercase tracking-[0.15em] btn-shimmer transition-all duration-500 hover:shadow-[0_0_40px_hsl(var(--gold)/0.2)]">
+                {/* Confirm button with ripple */}
+                <button
+                  onClick={handleConfirm}
+                  className="relative w-full py-4 bg-gold text-black font-heading font-semibold text-sm uppercase tracking-[0.15em] btn-shimmer transition-all duration-500 hover:shadow-[0_0_40px_hsl(var(--gold)/0.2)] overflow-hidden"
+                >
+                  <AnimatePresence>
+                    {ripple && (
+                      <motion.span
+                        className="absolute inset-0 bg-white/30"
+                        initial={{ scale: 0, opacity: 1, borderRadius: "100%" }}
+                        animate={{ scale: 3, opacity: 0 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.6 }}
+                        style={{ transformOrigin: "center" }}
+                      />
+                    )}
+                  </AnimatePresence>
                   Confirm Booking
                 </button>
               </div>

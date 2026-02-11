@@ -1,3 +1,6 @@
+import { useEffect, useState } from "react";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 import { ScrollReveal, useCountUp, LineDraw } from "@/components/ScrollReveal";
 
 const stats = [
@@ -8,22 +11,39 @@ const stats = [
 
 const StatCard = ({ value, suffix, label, delay }: { value: number; suffix: string; label: string; delay: number }) => {
   const { count, ref } = useCountUp(value, 2000);
+  const cardRef = useRef(null);
+  const isInView = useInView(cardRef, { once: true, margin: "-80px" });
+  const [glowing, setGlowing] = useState(false);
+
+  useEffect(() => {
+    if (isInView) {
+      const timer = setTimeout(() => setGlowing(true), 2200 + delay * 1000);
+      const off = setTimeout(() => setGlowing(false), 3000 + delay * 1000);
+      return () => { clearTimeout(timer); clearTimeout(off); };
+    }
+  }, [isInView, delay]);
+
   return (
-    <ScrollReveal delay={delay} className="flex-1 min-w-[200px]">
+    <motion.div
+      ref={cardRef}
+      className="flex-1 min-w-[200px]"
+      initial={{ opacity: 0, y: 30, scale: 0.95 }}
+      animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+      transition={{ duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] }}
+    >
       <div ref={ref} className="text-center">
-        <p className="text-6xl md:text-7xl font-heading font-semibold text-gold text-glow-gold mb-3">
+        <p className={`text-6xl md:text-7xl font-heading font-semibold text-gold mb-3 transition-all duration-500 ${glowing ? "text-glow-gold" : ""}`}>
           {count}
           <span className="text-gold/60">{suffix}</span>
         </p>
         <p className="text-silver/70 text-sm leading-relaxed font-body">{label}</p>
       </div>
-    </ScrollReveal>
+    </motion.div>
   );
 };
 
 const ProblemSection = () => (
   <section id="program" className="relative bg-void slash-motif py-28 md:py-40">
-    {/* Top edge glow */}
     <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
 
     <div className="container mx-auto px-6 md:px-8">
