@@ -63,7 +63,7 @@ const SpectrumSection = () => {
                     transition={{ delay: 0.2 + i * 0.2, duration: 0.5 }}
                     className="w-12 h-12 rounded-full border border-gold/20 bg-gold/5 flex items-center justify-center mb-4"
                   >
-                    <Icon size={20} className="text-gold" />
+                    <Icon size={20} className="text-off-white" />
                   </motion.div>
                   <div className="w-5 h-5 rounded-full bg-gold pulse-gold mb-5 ring-4 ring-black/60" />
                   <p className="text-off-white font-heading text-sm font-medium text-center max-w-[120px] mb-1">
@@ -107,7 +107,7 @@ const SpectrumSection = () => {
                       transition={{ delay: 0.3 + i * 0.2, duration: 0.5 }}
                       className="w-10 h-10 rounded-full border border-gold/20 bg-gold/5 flex items-center justify-center"
                     >
-                      <Icon size={16} className="text-gold" />
+                      <Icon size={16} className="text-off-white" />
                     </motion.div>
                     <div className="w-5 h-5 rounded-full bg-gold pulse-gold shrink-0 ring-4 ring-charcoal" />
                   </div>
