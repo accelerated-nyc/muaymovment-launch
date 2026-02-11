@@ -1,13 +1,15 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { Armchair, HandHelping, Scale, Target, Zap } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
-const nodes = [
-  { label: "Seated Adaptive Work", detail: "Wheelchair-accessible" },
-  { label: "Assisted Standing", detail: "Supported balance" },
-  { label: "Independent Balance", detail: "Weight transfer" },
-  { label: "Controlled Striking", detail: "Precision power" },
-  { label: "Full Pad Combinations", detail: "Complete autonomy" },
+const nodes: { label: string; detail: string; icon: LucideIcon }[] = [
+  { label: "Seated Adaptive Work", detail: "Wheelchair-accessible", icon: Armchair },
+  { label: "Assisted Standing", detail: "Supported balance", icon: HandHelping },
+  { label: "Independent Balance", detail: "Weight transfer", icon: Scale },
+  { label: "Controlled Striking", detail: "Precision power", icon: Target },
+  { label: "Full Pad Combinations", detail: "Complete autonomy", icon: Zap },
 ];
 
 const SpectrumSection = () => {
@@ -17,7 +19,7 @@ const SpectrumSection = () => {
   const mobileInView = useInView(mobileRef, { once: true, margin: "-100px" });
 
   return (
-    <section className="relative bg-charcoal film-grain py-28 md:py-40 overflow-hidden">
+    <section className="relative bg-charcoal film-grain py-32 md:py-48 overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/15 to-transparent" />
 
       <div className="container mx-auto px-6 md:px-8">
@@ -45,21 +47,32 @@ const SpectrumSection = () => {
 
           {/* Nodes */}
           <div className="flex justify-between mx-8 -mt-[11px]">
-            {nodes.map((node, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 15 }}
-                animate={desktopInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.4 + i * 0.2, duration: 0.6 }}
-                className="flex flex-col items-center"
-              >
-                <div className="w-5 h-5 rounded-full bg-gold pulse-gold mb-5 ring-4 ring-black/60" />
-                <p className="text-off-white font-heading text-sm font-medium text-center max-w-[120px] mb-1">
-                  {node.label}
-                </p>
-                <p className="text-silver/55 text-[11px] text-center">{node.detail}</p>
-              </motion.div>
-            ))}
+            {nodes.map((node, i) => {
+              const Icon = node.icon;
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={desktopInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ delay: 0.3 + i * 0.2, duration: 0.6 }}
+                  className="flex flex-col items-center"
+                >
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    animate={desktopInView ? { opacity: 1, scale: 1 } : {}}
+                    transition={{ delay: 0.2 + i * 0.2, duration: 0.5 }}
+                    className="w-12 h-12 rounded-full border border-gold/20 bg-gold/5 flex items-center justify-center mb-4"
+                  >
+                    <Icon size={20} className="text-gold" />
+                  </motion.div>
+                  <div className="w-5 h-5 rounded-full bg-gold pulse-gold mb-5 ring-4 ring-black/60" />
+                  <p className="text-off-white font-heading text-sm font-medium text-center max-w-[120px] mb-1">
+                    {node.label}
+                  </p>
+                  <p className="text-silver/55 text-[11px] text-center">{node.detail}</p>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
 
@@ -77,21 +90,34 @@ const SpectrumSection = () => {
             />
           </div>
           <div className="flex flex-col gap-12">
-            {nodes.map((node, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: -10 }}
-                animate={mobileInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: 0.4 + i * 0.2, duration: 0.5 }}
-                className="flex items-start gap-5"
-              >
-                <div className="w-5 h-5 rounded-full bg-gold pulse-gold shrink-0 -ml-[14px] ring-4 ring-charcoal" />
-                <div>
-                  <p className="text-off-white font-heading text-sm font-medium">{node.label}</p>
-                  <p className="text-silver/55 text-[11px]">{node.detail}</p>
-                </div>
-              </motion.div>
-            ))}
+            {nodes.map((node, i) => {
+              const Icon = node.icon;
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={mobileInView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ delay: 0.4 + i * 0.2, duration: 0.5 }}
+                  className="flex items-start gap-5"
+                >
+                  <div className="flex flex-col items-center gap-2 -ml-[14px]">
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.5 }}
+                      animate={mobileInView ? { opacity: 1, scale: 1 } : {}}
+                      transition={{ delay: 0.3 + i * 0.2, duration: 0.5 }}
+                      className="w-10 h-10 rounded-full border border-gold/20 bg-gold/5 flex items-center justify-center"
+                    >
+                      <Icon size={16} className="text-gold" />
+                    </motion.div>
+                    <div className="w-5 h-5 rounded-full bg-gold pulse-gold shrink-0 ring-4 ring-charcoal" />
+                  </div>
+                  <div className="pt-1">
+                    <p className="text-off-white font-heading text-sm font-medium">{node.label}</p>
+                    <p className="text-silver/55 text-[11px]">{node.detail}</p>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </div>
