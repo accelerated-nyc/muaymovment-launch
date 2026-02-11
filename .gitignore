@@ -22,3 +22,13 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Claude Code local settings
+.claude/
+
+# Large media files — host on CDN instead of git
+public/*.mov
+public/*.MOV
+public/*.mp4
+public/*.MP4
+public/*.webm
