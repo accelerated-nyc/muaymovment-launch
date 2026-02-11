@@ -35,7 +35,7 @@ const Logo = ({ className = "" }: { className?: string }) => (
     </svg>
     <div className="flex flex-col leading-none tracking-tight font-heading">
       <span className="text-xl font-semibold text-off-white">MUAY</span>
-      <span className="text-xl font-light text-gold tracking-[0.15em]">MOVMENT</span>
+      <span className="text-xl font-light text-gold tracking-[0.15em]">MOVEMENT</span>
     </div>
   </div>
 );
