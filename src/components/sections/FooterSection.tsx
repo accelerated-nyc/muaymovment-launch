@@ -1,11 +1,16 @@
+import { motion } from "framer-motion";
 import { ScrollReveal, LineDraw } from "@/components/ScrollReveal";
 
 const FooterSection = () => (
   <footer className="relative bg-void py-28 md:py-40 overflow-hidden">
     <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/15 to-transparent" />
 
-    {/* Ambient gold glow at bottom */}
-    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full bg-gold/[0.03] blur-[120px] pointer-events-none" />
+    {/* Ambient gold glow at bottom — pulsing */}
+    <motion.div
+      className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full bg-gold/[0.03] blur-[120px] pointer-events-none"
+      animate={{ opacity: [0.4, 1, 0.4] }}
+      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+    />
 
     <div className="container mx-auto px-6 md:px-8 text-center relative z-10">
       <ScrollReveal>
@@ -35,22 +40,26 @@ const FooterSection = () => (
 
       <LineDraw className="max-w-sm mx-auto mb-12" />
 
+      {/* Staggered social links */}
       <div className="flex items-center justify-center gap-8 mb-8">
-        {["Twitter", "LinkedIn", "Instagram"].map((social) => (
-          <a
-            key={social}
-            href="#"
-            className="text-[12px] text-silver/40 tracking-[0.2em] uppercase hover:text-gold transition-colors duration-300"
-          >
-            {social}
-          </a>
+        {["Twitter", "LinkedIn", "Instagram"].map((social, i) => (
+          <ScrollReveal key={social} delay={0.3 + i * 0.08}>
+            <a
+              href="#"
+              className="nav-link-sweep text-[12px] text-silver/40 tracking-[0.2em] uppercase hover:text-gold transition-colors duration-300"
+            >
+              {social}
+            </a>
+          </ScrollReveal>
         ))}
       </div>
 
-      <div className="text-white/15 text-[11px] space-y-1 tracking-wide">
-        <p>info@muaymovment.com</p>
-        <p>&copy; 2025 MuayMovment Fitness. All rights reserved.</p>
-      </div>
+      <ScrollReveal delay={0.55}>
+        <div className="text-white/15 text-[11px] space-y-1 tracking-wide">
+          <p>info@muaymovment.com</p>
+          <p>&copy; 2025 MuayMovment Fitness. All rights reserved.</p>
+        </div>
+      </ScrollReveal>
     </div>
   </footer>
 );

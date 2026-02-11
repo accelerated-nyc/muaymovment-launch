@@ -206,6 +206,36 @@
     box-shadow: 0 0 20px hsl(var(--gold) / 0.08), inset 0 0 20px hsl(var(--gold) / 0.03);
   }
 
+  /* ─── Nav link underline sweep ─── */
+  .nav-link-sweep {
+    @apply relative;
+  }
+  .nav-link-sweep::after {
+    content: '';
+    @apply absolute bottom-[-4px] left-0 w-full h-[1px] origin-left;
+    background: hsl(var(--gold));
+    transform: scaleX(0);
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .nav-link-sweep:hover::after {
+    transform: scaleX(1);
+  }
+
+  /* ─── Badge shimmer for pricing ─── */
+  .badge-shimmer {
+    @apply relative overflow-hidden;
+  }
+  .badge-shimmer::after {
+    content: '';
+    @apply absolute inset-0;
+    background: linear-gradient(90deg, transparent, hsl(0 0% 100% / 0.3), transparent);
+    animation: badge-shimmer-anim 3s ease-in-out infinite;
+  }
+  @keyframes badge-shimmer-anim {
+    0%, 100% { transform: translateX(-100%); }
+    50% { transform: translateX(100%); }
+  }
+
   /* ─── Animations ─── */
   @keyframes gold-pulse {
     0%, 100% { box-shadow: 0 0 0 0 hsl(var(--gold) / 0.5); }
@@ -247,7 +277,12 @@
     .animate-fade-in-up {
       animation: none;
     }
-    .btn-shimmer::before {
+    .btn-shimmer::before,
+    .badge-shimmer::after {
+      transition: none;
+      animation: none;
+    }
+    .nav-link-sweep::after {
       transition: none;
     }
   }
