@@ -33,7 +33,7 @@ const SpectrumSection = () => {
         {/* Desktop horizontal timeline */}
         <div ref={desktopRef} className="hidden md:block relative max-w-5xl mx-auto">
           {/* Track - positioned to align with dots */}
-          <div className="absolute left-16 right-16 top-[58px] h-[2px] bg-white/[0.04]">
+          <div className="absolute left-16 right-16 top-[74px] h-[2px] bg-white/[0.04]">
             <motion.div
               initial={{ width: "0%" }}
               animate={desktopInView ? { width: "100%" } : { width: "0%" }}
