@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import StickyNav from "@/components/StickyNav";
 import HeroSection from "@/components/sections/HeroSection";
 import ProblemSection from "@/components/sections/ProblemSection";
 import MethodSection from "@/components/sections/MethodSection";
@@ -20,6 +21,7 @@ const Index = () => {
 
   return (
   <main>
+    <StickyNav />
     <HeroSection />
     <ProblemSection />
     <MethodSection />
