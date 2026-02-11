@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import HeroSection from "@/components/sections/HeroSection";
 import ProblemSection from "@/components/sections/ProblemSection";
 import MethodSection from "@/components/sections/MethodSection";
@@ -9,7 +10,12 @@ import SchedulingSection from "@/components/sections/SchedulingSection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import FooterSection from "@/components/sections/FooterSection";
 
-const Index = () => (
+const Index = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  return (
   <main>
     <HeroSection />
     <ProblemSection />
@@ -22,6 +28,7 @@ const Index = () => (
     <TestimonialsSection />
     <FooterSection />
   </main>
-);
+  );
+};
 
 export default Index;
