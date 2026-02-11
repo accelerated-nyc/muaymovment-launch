@@ -78,7 +78,7 @@ const SpectrumSection = () => {
 
         {/* Mobile vertical timeline */}
         <div ref={mobileRef} className="md:hidden relative max-w-xs mx-auto pl-6">
-          <div className="absolute left-[11px] top-0 bottom-0 w-[2px] bg-white/[0.04]">
+          <div className="absolute left-[19px] top-0 bottom-0 w-[2px] bg-white/[0.04]">
             <motion.div
               initial={{ height: "0%" }}
               animate={mobileInView ? { height: "100%" } : { height: "0%" }}
