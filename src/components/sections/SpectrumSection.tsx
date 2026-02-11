@@ -77,8 +77,9 @@ const SpectrumSection = () => {
         </div>
 
         {/* Mobile vertical timeline */}
-        <div ref={mobileRef} className="md:hidden relative max-w-xs mx-auto pl-6">
-          <div className="absolute left-[19px] top-0 bottom-0 w-[2px] bg-white/[0.04]">
+        <div ref={mobileRef} className="md:hidden relative max-w-xs mx-auto">
+          {/* Vertical line through dots - positioned at icon(40px) + gap(12px) + dot center(10px) = 62px */}
+          <div className="absolute left-[62px] top-0 bottom-0 w-[2px] bg-white/[0.04]">
             <motion.div
               initial={{ height: "0%" }}
               animate={mobileInView ? { height: "100%" } : { height: "0%" }}
@@ -98,20 +99,18 @@ const SpectrumSection = () => {
                   initial={{ opacity: 0, x: -10 }}
                   animate={mobileInView ? { opacity: 1, x: 0 } : {}}
                   transition={{ delay: 0.4 + i * 0.2, duration: 0.5 }}
-                  className="flex items-start gap-5"
+                  className="flex items-center gap-3"
                 >
-                  <div className="flex flex-col items-center gap-2 -ml-[14px]">
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.5 }}
-                      animate={mobileInView ? { opacity: 1, scale: 1 } : {}}
-                      transition={{ delay: 0.3 + i * 0.2, duration: 0.5 }}
-                      className="w-10 h-10 rounded-full border border-gold/20 bg-gold/5 flex items-center justify-center"
-                    >
-                      <Icon size={16} className="text-off-white" />
-                    </motion.div>
-                    <div className="w-5 h-5 rounded-full bg-gold pulse-gold shrink-0 ring-4 ring-charcoal" />
-                  </div>
-                  <div className="pt-1">
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    animate={mobileInView ? { opacity: 1, scale: 1 } : {}}
+                    transition={{ delay: 0.3 + i * 0.2, duration: 0.5 }}
+                    className="w-10 h-10 rounded-full border border-gold/20 bg-gold/5 flex items-center justify-center shrink-0"
+                  >
+                    <Icon size={16} className="text-off-white" />
+                  </motion.div>
+                  <div className="w-5 h-5 rounded-full bg-gold pulse-gold shrink-0 ring-4 ring-charcoal" />
+                  <div className="ml-2">
                     <p className="text-off-white font-heading text-sm font-medium">{node.label}</p>
                     <p className="text-silver/55 text-[11px]">{node.detail}</p>
                   </div>
