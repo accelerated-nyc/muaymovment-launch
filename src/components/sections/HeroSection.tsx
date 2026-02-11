@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { ChevronDown } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import Logo from "@/components/Logo";
+
 
 const wordLines = [
   { text: "Rewiring", className: "text-off-white" },
@@ -43,21 +43,8 @@ const HeroSection = () => {
         transition={{ duration: 1.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
       />
 
-      {/* Navigation bar */}
-      <nav className="relative z-10 container mx-auto px-6 md:px-8 pt-8 flex items-center justify-between">
-        <Logo />
-        <div className="hidden md:flex items-center gap-8">
-          {["Program", "Method", "Pricing", "Book"].map((item) => (
-            <a
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              className="nav-link-sweep text-[13px] text-silver/70 tracking-[0.15em] uppercase font-body hover:text-gold transition-colors duration-300"
-            >
-              {item}
-            </a>
-          ))}
-        </div>
-      </nav>
+      {/* Spacer for fixed nav */}
+      <div className="h-16" />
 
       {/* Hero content — centered */}
       <div className="relative z-10 flex-1 flex items-center">
