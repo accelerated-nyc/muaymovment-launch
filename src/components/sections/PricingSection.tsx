@@ -76,15 +76,16 @@ const PricingCard = ({ tier, delay }: { tier: typeof tiers[0]; delay: number }) 
           ))}
         </ul>
 
-        <button
-          className={`w-full py-4 text-sm font-heading font-semibold uppercase tracking-[0.15em] btn-shimmer transition-all duration-500 ${
+        <a
+          href="#book"
+          className={`block w-full py-4 text-sm text-center font-heading font-semibold uppercase tracking-[0.15em] btn-shimmer transition-all duration-500 ${
             tier.featured
               ? "bg-gold text-black hover:shadow-[0_0_30px_hsl(var(--gold)/0.2)]"
               : "bg-white/[0.04] text-off-white border border-white/[0.08] hover:border-gold/30 hover:text-gold"
           }`}
         >
           Book Now
-        </button>
+        </a>
       </div>
     </motion.div>
   );

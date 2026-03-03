@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import StickyNav from "@/components/StickyNav";
 import HeroSection from "@/components/sections/HeroSection";
 import ProblemSection from "@/components/sections/ProblemSection";
@@ -10,8 +10,11 @@ import PricingSection from "@/components/sections/PricingSection";
 import SchedulingSection from "@/components/sections/SchedulingSection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import FooterSection from "@/components/sections/FooterSection";
+import ContactForm from "@/components/ContactForm";
 
 const Index = () => {
+  const [contactOpen, setContactOpen] = useState(false);
+
   useEffect(() => {
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual';
@@ -31,7 +34,8 @@ const Index = () => {
     <PricingSection />
     <SchedulingSection />
     <TestimonialsSection />
-    <FooterSection />
+    <FooterSection onContactClick={() => setContactOpen(true)} />
+    <ContactForm open={contactOpen} onOpenChange={setContactOpen} />
   </main>
   );
 };

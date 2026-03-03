@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { sendBookingConfirmation } from "@/lib/emailjs";
+import { toast } from "sonner";
 
 const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const availableDates = [3, 5, 7, 10, 12, 14, 17, 19, 21, 24, 26, 28];
@@ -18,14 +20,41 @@ const SchedulingSection = () => {
   const [selectedTime, setSelectedTime] = useState<string | null>("10:00 AM — 10:45 AM");
   const [isZoom, setIsZoom] = useState(true);
   const [ripple, setRipple] = useState(false);
+  const [email, setEmail] = useState("");
+  const [sending, setSending] = useState(false);
 
   const calendarDays: (number | null)[] = [null, null, null, 1, 2, 3, 4];
   for (let i = 5; i <= 31; i++) calendarDays.push(i);
   while (calendarDays.length < 42) calendarDays.push(null);
 
-  const handleConfirm = () => {
+  const handleConfirm = async () => {
+    if (!selectedDate || !selectedTime) {
+      toast.error("Please select a date and time.");
+      return;
+    }
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      toast.error("Please enter a valid email address.");
+      return;
+    }
+
     setRipple(true);
+    setSending(true);
     setTimeout(() => setRipple(false), 600);
+
+    try {
+      await sendBookingConfirmation({
+        email,
+        date: `February ${selectedDate}, 2025`,
+        time: selectedTime,
+        format: isZoom ? "Zoom" : "In-Person",
+      });
+      toast.success("Booking confirmed! Check your email for details.");
+      setEmail("");
+    } catch {
+      toast.error("Could not send confirmation. Please try again.");
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -95,7 +124,7 @@ const SchedulingSection = () => {
                 </div>
 
                 {/* Toggle with sliding indicator */}
-                <div className="relative flex items-center gap-0 mb-10 bg-white/[0.02] border border-white/[0.08] overflow-hidden">
+                <div className="relative flex items-center gap-0 mb-6 bg-white/[0.02] border border-white/[0.08] overflow-hidden">
                   {/* Sliding gold background */}
                   <motion.div
                     className="absolute top-0 bottom-0 bg-gold"
@@ -121,10 +150,25 @@ const SchedulingSection = () => {
                   </button>
                 </div>
 
+                {/* Email input */}
+                <div className="mb-4">
+                  <label className="text-silver/50 text-[12px] tracking-[0.15em] uppercase mb-2 block font-body">
+                    Your Email
+                  </label>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="your@email.com"
+                    className="w-full bg-white/[0.04] border border-white/[0.08] px-4 py-3 text-off-white text-sm focus:border-gold/40 focus:outline-none transition-colors placeholder:text-white/20"
+                  />
+                </div>
+
                 {/* Confirm button with ripple */}
                 <button
                   onClick={handleConfirm}
-                  className="relative w-full py-4 bg-gold text-black font-heading font-semibold text-sm uppercase tracking-[0.15em] btn-shimmer transition-all duration-500 hover:shadow-[0_0_40px_hsl(var(--gold)/0.2)] overflow-hidden"
+                  disabled={sending}
+                  className="relative w-full py-4 bg-gold text-black font-heading font-semibold text-sm uppercase tracking-[0.15em] btn-shimmer transition-all duration-500 hover:shadow-[0_0_40px_hsl(var(--gold)/0.2)] overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <AnimatePresence>
                     {ripple && (
@@ -138,13 +182,13 @@ const SchedulingSection = () => {
                       />
                     )}
                   </AnimatePresence>
-                  Confirm Booking
+                  {sending ? "Sending..." : "Confirm Booking"}
                 </button>
               </div>
             </div>
 
             <p className="text-white/15 text-[11px] text-center mt-8 tracking-wide">
-              Secure payment processing powered by [Payment Partner]
+              A confirmation will be sent to your email after booking.
             </p>
           </div>
         </ScrollReveal>
