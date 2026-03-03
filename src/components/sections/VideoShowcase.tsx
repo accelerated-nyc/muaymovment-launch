@@ -9,13 +9,13 @@ import videoThumb6 from "@/assets/video-thumb-6.jpg";
 import videoThumb7 from "@/assets/video-thumb-7.jpg";
 
 const videos = [
-  { label: "Kickboxing Pad Work", src: "/kickboxing-padwork.mov", poster: videoThumb1 },
-  { label: "Training Session", src: "/718b8e9e9cd2401aa43b2f39fc806b94.MOV", poster: videoThumb2 },
-  { label: "Mobility Drill", src: "/6004e3495201487c933d74215726fc2d.MOV", poster: videoThumb3 },
-  { label: "Client Progress", src: "/02ab7f55b73b4aed977caeeb37490fc9.MOV", poster: videoThumb4 },
-  { label: "Combination Training", src: "/16b27929-bcd5-443b-bb9c-063ca44617d3.mov", poster: videoThumb5 },
-  { label: "Strength Assessment", src: "/6d6d4ed6ef14486dbe88b937a3d1b022.mov", poster: videoThumb6 },
-  { label: "Full Session", src: "/6fd9d72efe644f0abfc5ac0d55da742f.mov", poster: videoThumb7 },
+  { label: "Movement for Recovery", src: "/kickboxing-padwork.mov", poster: videoThumb1 },
+  { label: "Kickboxing Pad Work", src: "/718b8e9e9cd2401aa43b2f39fc806b94.MOV", poster: videoThumb2 },
+  { label: "Training Session", src: "/6004e3495201487c933d74215726fc2d.MOV", poster: videoThumb3 },
+  { label: "Seated Pad Work", src: "/02ab7f55b73b4aed977caeeb37490fc9.MOV", poster: videoThumb4 },
+  { label: "Adaptive Pad Work", src: "/16b27929-bcd5-443b-bb9c-063ca44617d3.mov", poster: videoThumb5 },
+  { label: "Balance Training", src: "/6d6d4ed6ef14486dbe88b937a3d1b022.mov", poster: videoThumb6 },
+  { label: "Assisted Mobility", src: "/6fd9d72efe644f0abfc5ac0d55da742f.mov", poster: videoThumb7 },
 ];
 
 const VideoShowcase = () => (

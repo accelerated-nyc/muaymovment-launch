@@ -25,7 +25,7 @@ const StickyNav = () => {
       <div className="container mx-auto px-6 md:px-8 py-4 flex items-center justify-between">
         <Logo />
         <div className="hidden md:flex items-center gap-8">
-          {["Program", "Method", "Pricing", "Book"].map((item) => (
+          {["Program", "Method", "Programs", "Book"].map((item) => (
             <a
               key={item}
               href={`#${item.toLowerCase()}`}

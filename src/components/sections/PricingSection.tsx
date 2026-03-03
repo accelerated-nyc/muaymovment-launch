@@ -4,33 +4,30 @@ import { ScrollReveal } from "@/components/ScrollReveal";
 
 const tiers = [
   {
-    name: "Single Session",
-    price: "$X",
-    period: "/ session",
-    features: ["45 minutes, Zoom or In-Person", "Personalized assessment", "Adaptive program design"],
+    name: "Foundations",
+    subtitle: "Start where you are",
+    features: ["45-minute sessions, Zoom or In-Person", "Personalized movement assessment", "Adaptive program design"],
     featured: false,
   },
   {
-    name: "Monthly Package",
-    price: "$XX",
-    period: "/ month",
+    name: "Progressive",
+    subtitle: "Build momentum",
     features: [
-      "4 sessions (45 min each)",
       "Weekly progressive programming",
       "Video review between sessions",
       "Priority scheduling",
+      "Ongoing mobility tracking",
     ],
     featured: true,
   },
   {
-    name: "Intensive Program",
-    price: "$XXX",
-    period: "/ 3 months",
+    name: "Intensive",
+    subtitle: "Full transformation",
     features: [
-      "12 sessions (45 min each)",
       "Full motor function assessment",
       "Custom progression roadmap",
-      "Dedicated Slack/text support",
+      "Dedicated support between sessions",
+      "Long-term mobility planning",
     ],
     featured: false,
   },
@@ -60,14 +57,10 @@ const PricingCard = ({ tier, delay }: { tier: typeof tiers[0]; delay: number }) 
           </span>
         )}
 
-        <h3 className="font-heading text-lg font-medium text-off-white mb-6">{tier.name}</h3>
+        <h3 className="font-heading text-2xl font-semibold text-off-white mb-2">{tier.name}</h3>
+        <p className="text-silver/50 text-sm font-body mb-8">{tier.subtitle}</p>
 
-        <p className="font-heading text-5xl font-semibold text-off-white mb-1">
-          {tier.price}
-          <span className="text-sm font-body font-normal text-silver/60 ml-2">{tier.period}</span>
-        </p>
-
-        <ul className="mt-8 mb-10 flex-1 space-y-4">
+        <ul className="mb-10 flex-1 space-y-4">
           {tier.features.map((f, j) => (
             <li key={j} className="flex items-start gap-3 text-sm text-silver/70">
               <span className="w-1 h-1 rounded-full bg-gold/60 mt-2 shrink-0" />
@@ -92,12 +85,12 @@ const PricingCard = ({ tier, delay }: { tier: typeof tiers[0]; delay: number }) 
 };
 
 const PricingSection = () => (
-  <section id="pricing" className="relative bg-charcoal slash-motif py-28 md:py-40">
+  <section id="programs" className="relative bg-charcoal slash-motif py-28 md:py-40">
     <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/15 to-transparent" />
 
     <div className="container mx-auto px-6 md:px-8">
       <ScrollReveal>
-        <p className="text-gold/70 text-[13px] tracking-[0.3em] uppercase mb-4 font-body text-center">Investment</p>
+        <p className="text-gold/70 text-[13px] tracking-[0.3em] uppercase mb-4 font-body text-center">Programs</p>
         <h2 className="font-heading text-3xl md:text-5xl lg:text-6xl font-semibold text-off-white mb-20 text-center">
           Train <span className="text-gold">Your Way</span>
         </h2>

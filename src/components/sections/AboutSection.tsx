@@ -54,7 +54,7 @@ const AboutSection = () => {
           <div className="md:col-span-7 md:pl-8">
             <ScrollReveal>
               <p className="text-gold/70 text-[13px] tracking-[0.3em] uppercase mb-3 font-body">Founder</p>
-              <h2 className="font-heading text-4xl md:text-5xl font-semibold text-off-white mb-2">[Trainer Name]</h2>
+              <h2 className="font-heading text-4xl md:text-5xl font-semibold text-off-white mb-2">Ted Campbell</h2>
               <p className="text-silver/60 text-sm tracking-wide mb-8">Founder, MuayMovment Fitness</p>
             </ScrollReveal>
 
@@ -66,10 +66,10 @@ const AboutSection = () => {
                   A decorated Muay Thai practitioner with over fifteen years of competitive and coaching experience. After witnessing the transformative potential of martial arts-based movement in clinical rehabilitation settings, they dedicated three years to developing MuayMovment's adaptive methodology.
                 </p>
                 <p>
-                  Certified in adaptive fitness, neurological rehabilitation protocols, and trauma-informed coaching, they bring the discipline of a fighter and the precision of a clinician to every session.
+                  Muay Thai's core principles — balance, rhythm, hip rotation, and progressive resistance — map directly onto what the body needs to rebuild mobility, flexibility, and functional strength. Every session channels the discipline of the art into movement that meets you where you are.
                 </p>
                 <p className="text-off-white/80 font-heading text-lg leading-relaxed border-l-2 border-gold/30 pl-6">
-                  "I built this program because I watched people get left behind. Muay Thai taught me that power starts from the ground up — and that principle is universal, regardless of ability."
+                  "Growing up in the Bronx, I saw whole communities — seniors, people with disabilities, people nobody invested in — get written off. Muay Thai gave me discipline, confidence, and a reason to move. I built this so it could do the same for them."
                 </p>
               </div>
             </ScrollReveal>
