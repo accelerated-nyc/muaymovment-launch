@@ -4,7 +4,7 @@ import { ScrollReveal } from "@/components/ScrollReveal";
 
 const testimonials = [
   {
-    quote: "I spent two years being told what I couldn't do. MuayMovment showed me what I could. I'm throwing combinations now that I didn't think my body was capable of.",
+    quote: "I spent two years being told what I couldn't do. Muay Movement showed me what I could. I'm throwing combinations now that I didn't think my body was capable of.",
     name: "Jim D.",
     desc: "Veteran, 67",
   },

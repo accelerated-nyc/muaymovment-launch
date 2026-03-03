@@ -39,7 +39,7 @@ const AboutSection = () => {
               >
                 <motion.img
                   src="/35dd4145-88c7-4963-8bfe-0a9fbbfb5e26.JPG"
-                  alt="MuayMovment founder with students in fighting stance at the gym"
+                  alt="Muay Movement founder with students in fighting stance at the gym"
                   className="w-full aspect-[3/4] object-cover object-top hover:grayscale-0 transition-all duration-700"
                   initial={{ filter: "grayscale(100%)" }}
                   animate={imgInView ? { filter: "grayscale(0%)" } : {}}
@@ -55,7 +55,7 @@ const AboutSection = () => {
             <ScrollReveal>
               <p className="text-gold/70 text-[13px] tracking-[0.3em] uppercase mb-3 font-body">Founder</p>
               <h2 className="font-heading text-4xl md:text-5xl font-semibold text-off-white mb-2">Ted Campbell</h2>
-              <p className="text-silver/60 text-sm tracking-wide mb-8">Founder, MuayMovment Fitness</p>
+              <p className="text-silver/60 text-sm tracking-wide mb-8">Founder, Muay Movement Fitness</p>
             </ScrollReveal>
 
             <LineDraw className="my-8 max-w-xs" />
@@ -63,7 +63,7 @@ const AboutSection = () => {
             <ScrollReveal delay={0.1}>
               <div className="space-y-5 text-silver/70 leading-relaxed mb-10">
                 <p>
-                  A decorated Muay Thai practitioner with over fifteen years of competitive and coaching experience. After witnessing the transformative potential of martial arts-based movement in clinical rehabilitation settings, they dedicated three years to developing MuayMovment's adaptive methodology.
+                  A decorated Muay Thai practitioner with over fifteen years of competitive and coaching experience. After witnessing the transformative potential of martial arts-based movement in clinical rehabilitation settings, they dedicated three years to developing Muay Movement's adaptive methodology.
                 </p>
                 <p>
                   Muay Thai's core principles — balance, rhythm, hip rotation, and progressive resistance — map directly onto what the body needs to rebuild mobility, flexibility, and functional strength. Every session channels the discipline of the art into movement that meets you where you are.

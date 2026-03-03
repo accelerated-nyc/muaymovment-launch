@@ -32,7 +32,7 @@ const FooterSection = ({ onContactClick }: FooterSectionProps) => {
 
         <ScrollReveal delay={0.1}>
           <p className="text-silver/60 text-lg mb-12 font-body">
-            Partner with MuayMovment. Let's scale this.
+            Partner with Muay Movement. Let's scale this.
           </p>
         </ScrollReveal>
 
@@ -71,8 +71,8 @@ const FooterSection = ({ onContactClick }: FooterSectionProps) => {
 
         <ScrollReveal delay={0.55}>
           <div className="text-white/15 text-[11px] space-y-1 tracking-wide">
-            <p>info@muaymovment.com</p>
-            <p>&copy; 2025 MuayMovment Fitness. All rights reserved.</p>
+            <p>info@muaymovement.com</p>
+            <p>&copy; 2025 Muay Movement Fitness. All rights reserved.</p>
           </div>
         </ScrollReveal>
       </div>

@@ -24,7 +24,7 @@ const HeroSection = () => {
       <motion.div className="absolute inset-0" style={{ y: bgY }}>
         <img
           src="/IMG_9931.JPG"
-          alt="MuayMovment group kickboxing class with heavy bags"
+          alt="Muay Movement group kickboxing class with heavy bags"
           className="w-full h-full object-cover opacity-20"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black" />
