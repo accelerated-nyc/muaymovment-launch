@@ -12,6 +12,10 @@ dist
 dist-ssr
 *.local
 
+# Bun lockfile (this is an npm project)
+bun.lockb
+bun.lock
+
 # Environment variables
 .env
 .env.local
